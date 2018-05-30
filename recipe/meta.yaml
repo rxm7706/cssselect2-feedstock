@@ -38,7 +38,7 @@ about:
   license_family: BSD
   license_file: LICENSE
   summary: CSS selectors for Python ElementTree
-  description:
+  description: |
     cssselect2 is a straightforward implementation of CSS3 Selectors for markup documents.
   doc_url: http://cssselect2.readthedocs.io
   dev_url: https://github.com/Kozea/cssselect2

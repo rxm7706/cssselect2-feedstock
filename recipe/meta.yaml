@@ -1,5 +1,5 @@
 {% set name = "cssselect2" %}
-{% set version = "0.2.1" %}
+{% set version = "0.8.0" %}
 
 package:
   name: '{{ name|lower }}'
@@ -7,26 +7,31 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 505d2ce3d3a1d390ddb52f7d0864b7efeb115a5b852a91861b498b92424503ab
+  sha256: 7674ffb954a3b46162392aee2a3a0aedb2e14ecf99fcc28644900f4e6e3e9d3a
 
 build:
-  number: 1
-  script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
+    - flit-core >=3.2,<4
     - pip
-    - setuptools
-    - tinycss2
   run:
-    - python
+    - python >={{ python_min }}
     - tinycss2
+    - webencodings
 
 test:
   imports:
     - cssselect2
+  commands:
+    - pip check
+  requires:
+    - python {{ python_min }}
+    - pip
 
 about:
   home: https://github.com/Kozea/cssselect2
@@ -42,3 +47,4 @@ about:
 extra:
   recipe-maintainers:
     - johanneskoester
+    - rxm7706
